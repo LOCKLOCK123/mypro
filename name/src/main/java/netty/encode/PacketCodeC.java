@@ -2,10 +2,8 @@ package netty.encode;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
-import netty.protocol.JSONSerializer;
-import netty.protocol.LoginRequestPacket;
-import netty.protocol.Packet;
-import netty.protocol.Serializer;
+import netty.protocol.*;
+import netty.protocol.constant.Command;
 
 /**
  * @author linlang
@@ -15,10 +13,9 @@ public class PacketCodeC {
 
     private static final int MAGIC_NUMBER = 0x12345678;
 
-    public  static final  PacketCodeC INSTANCE = new PacketCodeC();
+    public static final PacketCodeC INSTANCE = new PacketCodeC();
 
-    public ByteBuf encode(ByteBufAllocator cator,Packet packet) {
-        ByteBuf byteBuf = cator.ioBuffer();
+    public void encode(ByteBuf byteBuf, Packet packet) {
 
         byte[] bytes = Serializer.DEFAULT.serialize(packet);
 
@@ -28,8 +25,6 @@ public class PacketCodeC {
         byteBuf.writeByte(packet.getCommand());
         byteBuf.writeByte(bytes.length);
         byteBuf.writeBytes(bytes);
-
-        return byteBuf;
     }
 
     public Packet decode(ByteBuf byteBuf) {
@@ -46,12 +41,12 @@ public class PacketCodeC {
         byte command = byteBuf.readByte();
 
         // 数据包长度
-        int length = byteBuf.readInt();
+        int length = byteBuf.readByte();
 
         byte[] bytes = new byte[length];
         byteBuf.readBytes(bytes);
-
         Class<? extends Packet> requestType = LoginRequestPacket.class;
+        if (command == Command.LOGIN_RESPONSE) {requestType = LoginResponsePacket.class;}
         Serializer serializer = new JSONSerializer();
 
         if (requestType != null && serializer != null) {

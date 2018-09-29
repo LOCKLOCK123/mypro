@@ -1,5 +1,8 @@
 package netty.protocol;
 
+import static netty.protocol.constant.Command.LOGIN_REQUEST;
+import static netty.protocol.constant.Command.LOGIN_RESPONSE;
+
 /**
  * @author linlang
  * @date 2018/9/28
@@ -12,7 +15,7 @@ public class LoginResponsePacket extends Packet {
 
     @Override
     public Byte getCommand() {
-        return null;
+        return  LOGIN_RESPONSE;
     }
 
     public boolean isSuccess() {
