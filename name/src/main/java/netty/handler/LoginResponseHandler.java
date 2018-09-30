@@ -5,6 +5,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 
 import netty.protocol.LoginRequestPacket;
 import netty.protocol.LoginResponsePacket;
+import netty.util.LoginUtil;
 
 import java.util.Date;
 import java.util.UUID;
@@ -34,6 +35,7 @@ public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginRespo
     protected void channelRead0(ChannelHandlerContext ctx, LoginResponsePacket msg) throws Exception {
         if (msg.isSuccess()) {
             System.out.println(new Date() + ": 客户端登录成功");
+            LoginUtil.markAsLogin(ctx.channel());
         } else {
             System.out.println(new Date() + ": 客户端登录失败，原因：" + msg.getReason());
         }
