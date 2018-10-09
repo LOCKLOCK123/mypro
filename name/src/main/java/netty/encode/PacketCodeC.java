@@ -47,6 +47,8 @@ public class PacketCodeC {
         byteBuf.readBytes(bytes);
         Class<? extends Packet> requestType = LoginRequestPacket.class;
         if (command == Command.LOGIN_RESPONSE) {requestType = LoginResponsePacket.class;}
+        else if(command == Command.MESSAGE_REQUEST){requestType = MessageRequestPacket.class;}
+        else if (command == Command.MESSAGE_RESPONSE){requestType = MessageResponsePacket.class;}
         Serializer serializer = new JSONSerializer();
 
         if (requestType != null && serializer != null) {

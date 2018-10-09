@@ -16,8 +16,6 @@ public class PacketDecoder extends ByteToMessageDecoder{
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List out) throws Exception {
-        System.out.println("333");
-
         out.add(PacketCodeC.INSTANCE.decode(in));
     }
 
