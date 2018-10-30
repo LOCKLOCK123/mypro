@@ -11,7 +11,7 @@ public class BasicTypeTest {
         System.out.println("i++ = " + (i++));
         System.out.println("++i = " + (++i));
         Integer integer = 1;
-        Double d = 0d;//Double的valueof方法直接返回一个新的Doube，用==比较肯定是false
+        Double d = 1d;//Double的valueof方法直接返回一个新的Doube，用==比较肯定是false
         Integer integer1 = 1;//>-128 <128返回缓存里的 否则返回一个新的
         short s2 = 100;
         Short s1 = 100;//自动装箱
@@ -20,6 +20,7 @@ public class BasicTypeTest {
         long l2 = 10;
         double b = 10;
         float f = 2.5f;
-        System.out.println(s1 == s);
+
+        System.out.println(d );
     }
 }
