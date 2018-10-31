@@ -1,6 +1,7 @@
 package netty.util;
 
 import io.netty.channel.Channel;
+import io.netty.util.Attribute;
 import netty.protocol.constant.Attributes;
 import netty.session.Session;
 
@@ -16,7 +17,8 @@ public class SessionUtil {
 
     public static  void bindSession(Session session, Channel channel){
         userIdChannelMap.put(session.getUserId(), channel);
-        channel.attr(Attributes.SESSION).set(session);
+        Attribute<Session> attribute = channel.attr(Attributes.SESSION);
+        attribute.set(session);
     }
 
     public static void unbindSession(Channel channel){
@@ -28,8 +30,6 @@ public class SessionUtil {
 
 
     public static boolean hasLogin(Channel channel) {
-        System.out.println(channel.id());
-
         return channel.hasAttr(Attributes.SESSION);
     }
 
