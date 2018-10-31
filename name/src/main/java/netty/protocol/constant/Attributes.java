@@ -1,6 +1,7 @@
 package netty.protocol.constant;
 
 import io.netty.util.AttributeKey;
+import netty.session.Session;
 
 /**
  * @author linlang
@@ -8,4 +9,5 @@ import io.netty.util.AttributeKey;
  */
 public interface Attributes {
     AttributeKey<Boolean> LOGIN = AttributeKey.newInstance("login");
+    public  static final AttributeKey<Session> SESSION = AttributeKey.valueOf("netty.session.Session");
 }

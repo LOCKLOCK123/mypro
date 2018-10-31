@@ -11,6 +11,8 @@ public class LoginResponsePacket extends Packet {
 
     private boolean  success;
 
+    private String userId;
+
     private String reason;
 
     @Override
@@ -32,5 +34,13 @@ public class LoginResponsePacket extends Packet {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
