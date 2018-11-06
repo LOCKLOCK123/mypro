@@ -11,10 +11,13 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
+import netty.console.ConsoleCommandManager;
+import netty.console.LoginConsoleCommand;
 import netty.encode.PacketCodeC;
 import netty.encode.PacketDecoder;
 import netty.encode.PacketEncoder;
 import netty.handler.ClientHandler;
+import netty.handler.CreateGroupResponseHandler;
 import netty.handler.LoginResponseHandler;
 import netty.handler.MessageResponseHandler;
 import netty.protocol.LoginRequestPacket;
@@ -47,6 +50,7 @@ public class NettyClient {
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginResponseHandler());
                         ch.pipeline().addLast(new MessageResponseHandler());
+                        ch.pipeline().addLast(new CreateGroupResponseHandler());
                         ch.pipeline().addLast(new PacketEncoder());
                     }
                 });
@@ -67,41 +71,42 @@ public class NettyClient {
     }
 
 
+//      System.out.print("输入用户名登录: ");
+//    String username = sc.nextLine();
+//                        loginRequestPacket.setUsername(username);
+//
+//    // 密码使用默认的
+//                        loginRequestPacket.setPassword("pwd");
+//
+//    // 发送登录数据包
+//                        channel.writeAndFlush(loginRequestPacket);
+//    waitForLoginResponse();
+//} else {
+//        String toUserId = sc.nextLine();
+//        String message = sc.nextLine();
+//        channel.writeAndFlush(new MessageRequestPacket(toUserId, message));
+//        }
+
     private static void startConsoleThread(final Channel channel) {
-        final Scanner sc = new Scanner(System.in);
-        final LoginRequestPacket loginRequestPacket = new LoginRequestPacket();
+        final ConsoleCommandManager consoleCommandManager = new ConsoleCommandManager();
+        final LoginConsoleCommand loginConsoleCommand = new LoginConsoleCommand();
+        final Scanner scanner = new Scanner(System.in);
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (!Thread.interrupted()) {
                     if (!SessionUtil.hasLogin(channel)) {
-                        System.out.print("输入用户名登录: ");
-                        String username = sc.nextLine();
-                        loginRequestPacket.setUsername(username);
-
-                        // 密码使用默认的
-                        loginRequestPacket.setPassword("pwd");
-
-                        // 发送登录数据包
-                        channel.writeAndFlush(loginRequestPacket);
-                        waitForLoginResponse();
+                        loginConsoleCommand.exec(scanner, channel);
                     } else {
-                        String toUserId = sc.nextLine();
-                        String message = sc.nextLine();
-                        channel.writeAndFlush(new MessageRequestPacket(toUserId, message));
-                    }
+                        consoleCommandManager.exec(scanner, channel);
+                    }}
                 }
-            }
         }).start();
 
     }
 
-    private static void waitForLoginResponse() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ignored) {
-        }
-    }
+
 
 
 }
