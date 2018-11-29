@@ -21,6 +21,8 @@ public class BasicTypeTest {
         double b = 10;
         float f = 2.5f;
 
+        System.out.println(integer == i);
+
         System.out.println(d );
     }
 }
