@@ -14,6 +14,7 @@ public class PersonBeanDefinitionParser extends AbstractSingleBeanDefinitionPars
 
     @Override
     protected Class<?> getBeanClass(Element element) {
+
         return Person.class;
     }
 

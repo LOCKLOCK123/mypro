@@ -2,8 +2,9 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns="http://www.wjs.com/schema/user" targetNamespace="http://www.wjs.com/schema/user"
             elementFormDefault="qualified">
-    <xsd:element name="user">
+    <xsd:element name="person">
         <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:string"/>
             <xsd:attribute name="name" type="xsd:string"/>
             <xsd:attribute name="email" type="xsd:string"/>
         </xsd:complexType>

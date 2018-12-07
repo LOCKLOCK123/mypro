@@ -6,5 +6,5 @@
        http://www.wjs.com/schema/user http://www.wjs.com/schema/user.xsd">
 
 
-    <myTag:user name="2123" email="123@qq.com"/>
+    <myTag:person id="li"  name="2123" email="123@qq.com"/>
 </beans>
