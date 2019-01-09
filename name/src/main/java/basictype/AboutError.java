@@ -1,7 +1,5 @@
 package basictype;
 
-import netty.handler.LifeCyCleTestHandler;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +10,6 @@ import java.util.List;
 public class AboutError {
 
     public static void main(String[] args) {
-        Integer i;
         for (int k = 0; k<10;k++){
             getError();
         }
@@ -25,7 +22,11 @@ public class AboutError {
      * */
     public static void getError(){
             List<Integer> list = new ArrayList<>();
-            int i = list.get(0);
+            try {
+                list.get(0);
+            }catch (Exception e){
+                throw new MyMistake("someThing happen",e);
+            }
             System.out.println("23333");
     }
 }
