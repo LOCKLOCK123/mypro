@@ -20,7 +20,7 @@ public class StaticTest {
     static {   //静态代码块
         System.out.println("1");
     }
-    private static final StaticTest st = new StaticTest();
+   // private static final StaticTest st = new StaticTest();
 
 
 
