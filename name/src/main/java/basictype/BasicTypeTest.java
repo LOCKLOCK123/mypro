@@ -20,9 +20,9 @@ public class BasicTypeTest {
         long l2 = 10;
         double b = 10;
         float f = 2.5f;
+        long total = 12356L/1000L;
+        System.out.println(total);
 
-        System.out.println(integer == i);
-
-        System.out.println(d );
+        System.out.println(d);
     }
 }
