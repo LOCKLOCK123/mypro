@@ -20,7 +20,7 @@ public class BasicTypeTest {
         long l2 = 10;
         double b = 10;
         float f = 2.5f;
-        long total = 12356L/1000L;
+        double total = 0.200000000+0.2000000;
         System.out.println(total);
 
         System.out.println(d);

@@ -10,6 +10,7 @@ public class Foo {
 
     Foo() {
         System.out.println(i);
+        //这里的getvalue（）执行的是子类的getvalue，这个涉及到重载什么。
         int x = getValue();
         System.out.println(x);
     }

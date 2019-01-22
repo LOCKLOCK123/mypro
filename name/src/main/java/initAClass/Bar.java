@@ -8,9 +8,9 @@ public class Bar extends Foo {
     int j = 1;
 
     Bar() {
-        j = 2;
-    }
 
+    }
+    //代码块在构造函数执行之前执行
     {
         j = 3;
     }
