@@ -23,11 +23,33 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="learn" />
+        <module name="netty-study" />
+        <module name="NettyRpc" />
+        <module name="rpc-client" />
+        <module name="rpc-common" />
+        <module name="rpc-registry" />
+        <module name="rpc-registry-zookeeper" />
+        <module name="rpc-sample-api" />
+        <module name="rpc-sample-client" />
+        <module name="rpc-sample-server" />
+        <module name="rpc-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="demo" target="1." />
       <module name="learn" target="1.7" />
+      <module name="netty-study" target="1.8" />
+      <module name="NettyRpc" target="1.8" />
+      <module name="rpc" target="1.7" />
+      <module name="rpc-client" target="1.7" />
+      <module name="rpc-common" target="1.7" />
+      <module name="rpc-registry" target="1.7" />
+      <module name="rpc-registry-zookeeper" target="1.7" />
+      <module name="rpc-sample-api" target="1.7" />
+      <module name="rpc-sample-client" target="1.7" />
+      <module name="rpc-sample-server" target="1.7" />
+      <module name="rpc-server" target="1.7" />
+      <module name="test" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/NettyRpc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/name" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc/rpc-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc/rpc-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc/rpc-registry" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc/rpc-registry-zookeeper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc/rpc-sample-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc/rpc-sample-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc/rpc-sample-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc/rpc-server" charset="UTF-8" />
   </component>
 </project>

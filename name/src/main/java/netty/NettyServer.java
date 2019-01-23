@@ -1,16 +1,20 @@
 package netty;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.util.concurrent.Future;
+import io.netty.util.concurrent.GenericFutureListener;
 import netty.encode.PacketDecoder;
 import netty.encode.PacketEncoder;
-import netty.handler.*;
-
-/**
+import netty.handler.AuthHandler;
+import netty.handler.CreateGroupRequestHandler;
+import netty.handler.LoginRequestHandler;
+import netty.handler.MessageRequestHandler; /**
  * @author linlang
  * @date 2018/9/27
  */
@@ -23,31 +27,49 @@ import netty.handler.*;
 
 public class NettyServer {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
+            take();
+
+
+    }
+
+    public  static  void  take()  {
         NioEventLoopGroup bossGroup = new NioEventLoopGroup();
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
-        serverBootstrap
-                .group(bossGroup, workerGroup)
-                .channel(NioServerSocketChannel.class)
-                .option(ChannelOption.SO_BACKLOG, 1024)
-                .childOption(ChannelOption.SO_KEEPALIVE, true)
-                .childOption(ChannelOption.TCP_NODELAY, true)
-                .childHandler(new ChannelInitializer<NioSocketChannel>() {
+        try {
+            serverBootstrap
+                    .group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .option(ChannelOption.SO_BACKLOG, 1024)
+                    .childOption(ChannelOption.SO_KEEPALIVE, true)
+                    .childOption(ChannelOption.TCP_NODELAY, true)
+                    .childHandler(new ChannelInitializer<NioSocketChannel>() {
 
-                    @Override
-                    protected void initChannel(NioSocketChannel ch) {
-                        ch.pipeline().addLast(new PacketDecoder());
-                        ch.pipeline().addLast(new LoginRequestHandler());
-                        ch.pipeline().addLast(new AuthHandler());
-                        ch.pipeline().addLast(new MessageRequestHandler());
-                        ch.pipeline().addLast(new CreateGroupRequestHandler());
-                        ch.pipeline().addLast(new PacketEncoder());
-                    }
-                });
+                        @Override
+                        protected void initChannel(NioSocketChannel ch) {
+                            ch.pipeline().addLast(new PacketDecoder());
+                            ch.pipeline().addLast(new LoginRequestHandler());
+                            ch.pipeline().addLast(new AuthHandler());
+                            ch.pipeline().addLast(new MessageRequestHandler());
+                            ch.pipeline().addLast(new CreateGroupRequestHandler());
+                            ch.pipeline().addLast(new PacketEncoder());
+                        }
+                    });
 
-        serverBootstrap.bind(8000);
+            ChannelFuture channelFuture = serverBootstrap.bind(8000).sync().addListener(new GenericFutureListener<Future<? super Void>>() {
+                @Override
+                public void operationComplete(Future<? super Void> future) throws Exception {
+                    System.out.println("454545");
+                }
+            });
+
+        }catch (Exception e){}finally {
+            workerGroup.shutdownGracefully();
+            bossGroup.shutdownGracefully();
+        }
+
     }
 
 }

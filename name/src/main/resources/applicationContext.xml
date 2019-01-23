@@ -6,5 +6,123 @@
        http://www.wjs.com/schema/user http://www.wjs.com/schema/user.xsd">
 
 
-    <myTag:person id="li"  name="2123" email="123@qq.com"/>
+    <myTag:person id="li" name="2123" email="123@qq.com"/>
+
+
+    <bean id="bmwCar" class="spring.factorymodel.CarStaticFactory" factory-method="getCar">
+
+        <constructor-arg value="3"></constructor-arg>
+
+    </bean>
+
+
+    <bean id="audiCar" class="spring.factorymodel.CarStaticFactory" factory-method="getCar">
+
+        <constructor-arg value="2"></constructor-arg>
+
+    </bean>
+
+
+    <!-- Instance Factory Method:
+
+             1.must create a bean for the Instance Factroy First
+
+         -->
+
+    <bean id="carFactory" class="spring.factorymodel.CarInstanceFactory">
+
+        <property name="map">
+
+            <map>
+
+                <entry key="4">
+
+                    <bean class="spring.factorymodel.Car">
+
+                        <property name="id" value="4"></property>
+
+                        <property name="name" value="Honda"></property>
+
+                        <property name="price" value="300000"></property>
+
+                    </bean>
+
+                </entry>
+
+
+                <entry key="6">
+
+                    <bean class="spring.factorymodel.Car">
+
+                        <property name="id" value="6"></property>
+
+                        <property name="name" value="ford"></property>
+
+                        <property name="price" value="500000"></property>
+
+                    </bean>
+
+                </entry>
+
+            </map>
+
+        </property>
+
+    </bean>
+
+
+    <!-- 2.use Factory bean to get bean objectr
+
+       factory-bean : the bean define above
+
+       factory-method: method of get Bean Object
+
+       constructor-arg: parameters of factory-method
+
+    -->
+
+    <bean id="car4" factory-bean="carFactory" factory-method="getCar">
+
+        <constructor-arg value="4"></constructor-arg>
+
+    </bean>
+
+
+    <bean id="car6" factory-bean="carFactory" factory-method="getCar">
+
+        <constructor-arg value="6"></constructor-arg>
+
+    </bean>
+
+    <!--无参构造方法搭配property注解-->
+    <bean class="spring.setUsage.Person" id="person">
+        <property name="name" value="LiuChunfu"></property>
+        <property name="id" value="125"></property>
+    </bean>
+
+    <!--有参构造方法搭配constructor-arg注解-->
+    <bean class="spring.setUsage.Person" id="person2">
+        <constructor-arg name="id" value="123"></constructor-arg>
+        <constructor-arg name="name" value="LiuChunfu"></constructor-arg>
+    </bean>
+
+
+    <!--<bean>的autowire属性有如下六个取值，他们的说明如下：
+        1、 No：即不启用自动装配。Autowire默认的值。
+        2、 byName：通过属性的名字的方式查找JavaBean依赖的对象并为其注入。比如说类Computer有个属性printer，指定其autowire属性为byName后，Spring IoC容器会在配置文件中查找id/name属性为printer的bean，然后使用Seter方法为其注入。
+        3、 byType：通过属性的类型查找JavaBean依赖的对象并为其注入。比如类Computer有个属性printer，类型为Printer，那么，指定其autowire属性为byType后，Spring IoC容器会查找Class属性为Printer的bean，使用Seter方法为其注入。
+        4、 constructor：通byType一样，也是通过类型查找依赖对象。与byType的区别在于它不是使用Seter方法注入，而是使用构造子注入。
+        5、 autodetect：在byType和constructor之间自动的选择注入方式。
+        6、 default：由上级标签<beans>的default-autowire属性确定。-->
+
+    <!-- bean 标签的autowire-candidate属性     default="default"     type="defaultable-boolean"
+
+    英文翻译：Indicates whether or not this bean should be considered when looking for matching candidates to satisfy another bean's autowiring requirements. Note that this does not affect explicit references by name, which will get resolved even if the specified bean is not marked as an autowire candidate.
+
+    上句解释：指示在查找匹配的候选项以满足另一个bean的自动装配要求时是否应该考虑此bean。请注意，这不会影响名称的显式引用，即使指定的bean未标记为autowire候选，也会解析它。-->
+
+
+
+
+
 </beans>

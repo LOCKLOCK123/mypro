@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/NettyRpc/NettyRpc.iml" filepath="$PROJECT_DIR$/NettyRpc/NettyRpc.iml" />
       <module fileurl="file://$PROJECT_DIR$/name/learn.iml" filepath="$PROJECT_DIR$/name/learn.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demo/learn.iml" filepath="$PROJECT_DIR$/demo/learn.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/mypro.iml" filepath="$PROJECT_DIR$/.idea/mypro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flash-netty/netty-study.iml" filepath="$PROJECT_DIR$/flash-netty/netty-study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc/rpc.iml" filepath="$PROJECT_DIR$/rpc/rpc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc/rpc-client/rpc-client.iml" filepath="$PROJECT_DIR$/rpc/rpc-client/rpc-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc/rpc-common/rpc-common.iml" filepath="$PROJECT_DIR$/rpc/rpc-common/rpc-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc/rpc-registry/rpc-registry.iml" filepath="$PROJECT_DIR$/rpc/rpc-registry/rpc-registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc/rpc-registry-zookeeper/rpc-registry-zookeeper.iml" filepath="$PROJECT_DIR$/rpc/rpc-registry-zookeeper/rpc-registry-zookeeper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc/rpc-sample-api/rpc-sample-api.iml" filepath="$PROJECT_DIR$/rpc/rpc-sample-api/rpc-sample-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc/rpc-sample-client/rpc-sample-client.iml" filepath="$PROJECT_DIR$/rpc/rpc-sample-client/rpc-sample-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc/rpc-sample-server/rpc-sample-server.iml" filepath="$PROJECT_DIR$/rpc/rpc-sample-server/rpc-sample-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc/rpc-server/rpc-server.iml" filepath="$PROJECT_DIR$/rpc/rpc-server/rpc-server.iml" />
     </modules>
   </component>
 </project>
