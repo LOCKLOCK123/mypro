@@ -1,6 +1,5 @@
 package generic;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -9,7 +8,7 @@ import java.util.List;
  * @date 2019/1/24
  * @Description: 关于泛型的学习
  */
-public class Cache<T> {
+public class Cache<T extends  List> {
 
     T value;
 
@@ -43,13 +42,7 @@ public class Cache<T> {
 
 
     public static void main(String[] args) {
-        Cache<String> cache = new Cache<>();
-        cache.setValue("2333");
-        System.out.println(cache.getValue());
-        cache.testMethod(1);
-        List<String> strings = new ArrayList<>();
-        cache.test("2333", strings);
-        cache.testWildCards(strings);
+
     }
 
 
