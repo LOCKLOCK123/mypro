@@ -284,10 +284,44 @@ public class Solution {
         }
     }
 
+    public static int[] sortedSquares(int[] A) {
+        int startOfPosNum = 0;
+        int N = A.length;
+        while (startOfPosNum < N && A[startOfPosNum] < 0) {
+            startOfPosNum++;
+        }
+        int endOfNagNum = startOfPosNum - 1;
+        int[] B = new int[N];
+        int t = 0;
+
+        while (endOfNagNum >= 0 && startOfPosNum < N) {
+            if (A[endOfNagNum] * A[endOfNagNum] < A[startOfPosNum] * A[startOfPosNum]) {
+                B[t++] = A[endOfNagNum] * A[endOfNagNum];
+                endOfNagNum--;
+            } else {
+                B[t++] = A[startOfPosNum] * A[startOfPosNum];
+                startOfPosNum++;
+            }
+        }
+
+        while (endOfNagNum >= 0) {
+            B[t++] = A[endOfNagNum] * A[endOfNagNum];
+            endOfNagNum--;
+        }
+        while (startOfPosNum < N) {
+            B[t++] = A[startOfPosNum] * A[startOfPosNum];
+            startOfPosNum++;
+        }
+
+        return B;
+
+
+    }
+
 
     public static void main(String[] args) {
-        int nums1[] = new int[]{2,3,5};
-        System.out.print(combinationSum(nums1, 10));
+        int nums1[] = new int[]{-4, -1, 0, 3, 10};
+        System.out.print(sortedSquares(nums1));
     }
 
 }
