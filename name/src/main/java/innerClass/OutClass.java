@@ -40,6 +40,7 @@ public class OutClass {
             System.out.print(nation);
         }
     }
+    //外部类访问内部类就像是访问一个别的类一样需要进行初始化
     public void requestInnerClass(){
         StaticDraw staticDraw = new StaticDraw();
         staticDraw.drawSahpe();
