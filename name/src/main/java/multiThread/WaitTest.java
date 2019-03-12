@@ -3,7 +3,6 @@ package multiThread;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author linlang
@@ -19,7 +18,7 @@ public class WaitTest {
                 wait();
             }
             list.add(v);
-            notify();
+            notifyAll();
         }
 
         synchronized int get() throws InterruptedException {
@@ -29,7 +28,7 @@ public class WaitTest {
                 // line 3
             }
             int v = list.remove(0);  // line 4
-            notify(); // line 5
+            notifyAll(); // line 5
             return v;
         }
 
@@ -40,23 +39,25 @@ public class WaitTest {
     public static void main(String[] args) throws InterruptedException {
         final Buf buf = new Buf();
         ExecutorService es = Executors.newFixedThreadPool(11);
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 1; i++) {
             es.execute(new Runnable() {
 
                 @Override
                 public void run() {
-                    while (true ) {
+                    //这个线程会一直跑知道出错为止
+                    while (true) {
                         try {
                             buf.put(1);
-                            Thread.sleep(20);
-                        }
-                        catch (InterruptedException e) {
+                            //Thread.sleep(20);
+                            System.out.println(Thread.currentThread().getName() + " is finished");
+                        } catch (InterruptedException e) {
                             e.printStackTrace();
                             break;
                         }
                     }
                 }
             });
+        }
         for (int i = 0; i < 1; i++) {
             es.execute(new Runnable() {
 
@@ -65,7 +66,11 @@ public class WaitTest {
                     while (true ) {
                         try {
                             buf.get();
-                            Thread.sleep(10);
+                            System.out.println(Thread.currentThread().getName()+" is finished");
+                            //sleep()方法导致了程序暂停执行指定的时间，让出cpu该其他线程，
+                            //但是他的监控状态依然保持着，当指定的时间到了又会自动恢复运行状态。
+                            //在调用sleep()方法的过程中，线程不会释放对象锁，就是这里的buf对象。
+                            //Thread.sleep(10);
                         }
                         catch (InterruptedException e) {
                             e.printStackTrace();
@@ -77,7 +82,7 @@ public class WaitTest {
         }
 
         es.shutdown();
-        es.awaitTermination(1, TimeUnit.DAYS);
+        //es.awaitTermination(2, TimeUnit.SECONDS);
 
     }
 }
